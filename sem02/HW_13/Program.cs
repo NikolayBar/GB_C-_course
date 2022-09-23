@@ -4,7 +4,7 @@
 
 Console.Clear();
 
-int initNumber=78;
+int initNumber=32679;
 string StrNumber=initNumber.ToString();
 
 if (StrNumber.Length<3)
