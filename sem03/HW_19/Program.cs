@@ -1,17 +1,17 @@
-﻿//Задача 19
+﻿//Задача 19 Direct text Reverse text
 //Напишите метод, который принимает на вход пятизначное число и проверяет, является ли оно палиндромом.
 
 string PlndrTest(int InputDig)
 {
-    string Text = Convert.ToString(InputDig);
+    string dirText = Convert.ToString(InputDig);
     string Result="не является палиндромом";
-    string Txet="";
-    foreach(char var in Text)
+    string revText="";
+    foreach(char var in dirText)
     {
-        Txet= var + Txet;
+        revText= var + revText;
     }
 
-    if (Text == Txet) 
+    if (dirText == revText) 
     {
         Result = "является палиндромом";
     }
@@ -20,6 +20,10 @@ string PlndrTest(int InputDig)
 
 Console.Clear();
 
+//здесь должен быть код для ввода с клаваиатуры
+//проверки введенного на соответствие условию задачи
+// и при необходимости конвертации в int32
+ 
 int inpDigit=12421;//число по условию задачи онли.
 
 Console.WriteLine("число "+ inpDigit +" " + PlndrTest(inpDigit));
