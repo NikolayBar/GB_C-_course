@@ -18,26 +18,30 @@
 */
 
 //Заполнение списка пришло/ушло охранником
+//Время работы магазина 5 часов с 9:00 до 14:00
+string[] WorkingTime = new string [5]{"9-10","10-11","11-12","12-13","13-14"};//рабочие часы
 int[] ListOfIncoming = new int[5]; //список входящих
 int[] ListOfOutput =   new int[5]; // список выходящих
 
 int RndPeople(int maxPeople)//случайное число пришел/ушел
 {
-    int result = new Random().Next(1,maxPeople);
+    
+   if(maxPeople<=0) maxPeople = 1;
+   int result = new Random().Next(0,maxPeople);
+    
     return result;
 }
 
 int oldVisitors = 0;// покупателей при открытии
 for (int i=0;i<5;i++) // заполняем списки пришел/ушел
-{
-    ListOfIncoming[i]= RndPeople(100-oldVisitors);// зашло покупателей
-    ListOfOutput[i]= RndPeople(ListOfIncoming[i] + oldVisitors);//вышло покупателей
-    oldVisitors=ListOfIncoming[i]-ListOfOutput[i];// осталось в магазине
-    if(oldVisitors<0) oldVisitors=0;// проверка на отрицательный результат
+{  
+    ListOfIncoming[i]= RndPeople(99-oldVisitors);// зашло покупателей
+    ListOfOutput[i]= RndPeople(ListOfIncoming[i]+oldVisitors);//вышло покупателей
+    oldVisitors=oldVisitors+(ListOfIncoming[i]-ListOfOutput[i]);//осталось в магазине
 }
 // список заполнен
 
-string[] WorkingTime = new string [5]{"9-10","10-11","11-12","12-13","13-14"};//рабочие часы
+
 int max=0;// максимальное число покупателей 
 
 int[] NumberOfVisitorsPerHours()// число покупателей по часам
