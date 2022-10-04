@@ -26,8 +26,8 @@ return res;
 }
 
 int size=6;// размер массива
-int[] arrRes=ArrThreeDigNum(size);
+int[] ArrRes=ArrThreeDigNum(size);
 
 Console.Clear();
-Console.WriteLine("в массиве: " + String.Join("|", arrRes));
-Console.WriteLine("Из {1} чисел четных {0}", NumOfEvenNum(arrRes),size);
+Console.WriteLine("в массиве: " + String.Join("|", ArrRes));
+Console.WriteLine("Из {1} чисел четных {0}", NumOfEvenNum(ArrRes),size);
