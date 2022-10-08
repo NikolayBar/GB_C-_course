@@ -80,8 +80,9 @@ void CalculateIntersectionPoint(double[,] inputCoord)
     {
         coordX = (inputCoord[0, 1] - inputCoord[0, 0]) / (inputCoord[1, 0] - inputCoord[1, 1]);
         coordY = (inputCoord[1, 0] * coordX) + inputCoord[0, 0];
+        Answer = $"Прямые пересекаются в точке X={coordX} / Y={coordY}).";
     }
-    if (inputCoord[1, 0] == inputCoord[1, 1])
+    else
     {
         if (inputCoord[0, 1] == inputCoord[0, 0])
         {
@@ -91,10 +92,6 @@ void CalculateIntersectionPoint(double[,] inputCoord)
         {
             Answer = "Прямые паралельны";
         }
-    }
-    else
-    {
-        Answer = $"Прямые пересекаются в точке X={coordX} / Y={coordY}).";
     }
 }
 
