@@ -11,7 +11,7 @@
 2.  Принимает от пользователя позицию элемента из двух чисел (строка,столбец), 
     проверяет наличие элемента с такими координатами и если введенные координаты не
     выходят из диапазона массива выдает значение элемента. В противном случае сообщает
-    что такой позиции не существует.
+    что такой позиции не существует. 
 */
 bool СheckForNumbers(string testOnDigits)
 {
@@ -52,11 +52,13 @@ int? UserDigInput()
 }
 void PrintArray(int[,] Array)
 {
+    string outData = "";
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-            Console.Write($"|{Array[i, j]}");
+            outData = $"| {Array[i, j]}";
+            Console.Write(outData.PadRight(4));
         }
         Console.Write("|\n");
     }
@@ -71,7 +73,6 @@ int[,] sourceArray = new int[3, 4]
 
 void SolutionFirst(int[,] Array)
 {
-    Console.Clear();
     Console.Write("ввести число");
     int value = Convert.ToInt32(UserDigInput());
     int count = 0;
@@ -85,7 +86,7 @@ void SolutionFirst(int[,] Array)
             if (Array[i, j] == value)
             {
                 count++;
-                result = $"\nНайдено {count} знач. {value}\nкрайнее находится в ячейке: row {i}, col {j})";
+                result = $"\nНайдено {count} знач. {value}\nкрайнее находится в ячейке: [{i},{j}])";
             }
         }
     }
@@ -93,4 +94,28 @@ void SolutionFirst(int[,] Array)
     Console.WriteLine(result);
 }
 
+void SolutionSecond(int[,] Array)
+{
+    Console.Write("Номер строки? ");
+    int userRow = Convert.ToInt32(UserDigInput());
+    Console.Write("Номер столбца? ");
+    int userCol = Convert.ToInt32(UserDigInput());
+    int arrRow = Array.GetLength(0);
+    int arrCol = Array.GetLength(1);
+    if (userRow >= 0 && userRow <= arrRow && userCol >= 0 && userCol <= arrCol)
+    {
+        Console.WriteLine($"Значение в ячейке [{userRow},{userCol}] равно {Array[userRow, userCol]}");
+    }
+    else
+    {
+        Console.WriteLine($"Ячейка с координатами [{userRow},{userCol}] в массиве отсутствует!");
+    }
+    PrintArray(Array);
+}
+Console.Clear();
+Console.WriteLine("ВАРИАНТ 1.\nнайти число в массиве.");
 SolutionFirst(sourceArray);
+Console.WriteLine();
+Console.WriteLine();
+Console.WriteLine("ВАРИАНТ 2.\nпоказать значение в массиве\nпо координатам.");
+SolutionSecond(sourceArray);
