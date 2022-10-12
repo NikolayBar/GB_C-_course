@@ -50,14 +50,14 @@ int? UserDigInput()
     return Convert.ToInt32(stringInput);
 
 }
-void PrintArray(int[,] Array)
+void PrintArray(int[,] array)
 {
     string outData = "";
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-            outData = $"| {Array[i, j]}";
+            outData = $"| {array[i, j]}";
             Console.Write(outData.PadRight(4));
         }
         Console.Write("|\n");
@@ -71,19 +71,19 @@ int[,] sourceArray = new int[3, 4]
     {8,4,2,4}
 };
 
-void SolutionFirst(int[,] Array)
+void SolutionFirst(int[,] array)
 {
     Console.Write("ввести число");
     int value = Convert.ToInt32(UserDigInput());
     int count = 0;
-    int rowSize = Array.GetLength(0);
-    int colSize = Array.GetLength(1);
+    int rowSize = array.GetLength(0);
+    int colSize = array.GetLength(1);
     string result = $"\nЗначение {value} в массиве не найдено";
     for (int i = 0; i < rowSize; i++)
     {
         for (int j = 0; j < colSize; j++)
         {
-            if (Array[i, j] == value)
+            if (array[i, j] == value)
             {
                 count++;
                 result = $"\nНайдено {count} знач. {value}\nкрайнее находится в ячейке: [{i},{j}])";
@@ -94,23 +94,23 @@ void SolutionFirst(int[,] Array)
     Console.WriteLine(result);
 }
 
-void SolutionSecond(int[,] Array)
+void SolutionSecond(int[,] array)
 {
     Console.Write("Номер строки? ");
     int userRow = Convert.ToInt32(UserDigInput());
     Console.Write("Номер столбца? ");
     int userCol = Convert.ToInt32(UserDigInput());
-    int arrRow = Array.GetLength(0);
-    int arrCol = Array.GetLength(1);
+    int arrRow = array.GetLength(0);
+    int arrCol = array.GetLength(1);
     if (userRow >= 0 && userRow <= arrRow && userCol >= 0 && userCol <= arrCol)
     {
-        Console.WriteLine($"Значение в ячейке [{userRow},{userCol}] равно {Array[userRow, userCol]}");
+        Console.WriteLine($"Значение в ячейке [{userRow},{userCol}] равно {array[userRow, userCol]}");
     }
     else
     {
         Console.WriteLine($"Ячейка с координатами [{userRow},{userCol}] в массиве отсутствует!");
     }
-    PrintArray(Array);
+    PrintArray(array);
 }
 Console.Clear();
 Console.WriteLine("ВАРИАНТ 1.\nнайти число в массиве.");
