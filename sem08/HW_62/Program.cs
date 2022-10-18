@@ -18,14 +18,14 @@ void View(int[,] arr)
     }
 }
 
-int size = 4;
+int size = 5;
 int step = 1;
 int[] indx = new int[] { 0, 0 };
 int[,] arrSpiral = new int[size, size];
 int k = 1;
 int strt = 0;
 
- while (k < arrSpiral.Length)
+while (k < arrSpiral.Length)
 {
     while (indx[1] < size - 1)
     {
@@ -39,7 +39,7 @@ int strt = 0;
         indx[0] += step;
         k++;
     }
-
+    
     while (indx[1] > strt)
     {
         arrSpiral[indx[0], indx[1]] = k;
@@ -56,10 +56,17 @@ int strt = 0;
     strt += 1;
     indx[0] += 1;
     indx[1] += 1;
-    size -=1;
+    size -= 1;
 }
 
+
+size = arrSpiral.GetLength(0);
+if (size % 2 != 0)
+{
+    arrSpiral[size / 2, size / 2] = arrSpiral.Length;
+}
 Console.Clear();
+Console.WriteLine("Заполнение массива по спирали\n");
 View(arrSpiral);
-Console.WriteLine($"крайнее значение k={k}");
+Console.WriteLine($"\nнаибольшее значение ячейки = {k=arrSpiral.Length},\nразмер массива {size} X {size}");
 Console.ReadKey();
