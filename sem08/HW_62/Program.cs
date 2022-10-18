@@ -62,3 +62,4 @@ int strt = 0;
 Console.Clear();
 View(arrSpiral);
 Console.WriteLine($"крайнее значение k={k}");
+Console.ReadKey();
