@@ -6,52 +6,69 @@
 11 16 15  6
 10  9  8  7 */
 const int cellWidth = 2;
+void DrawLineTop(int len)
+{
+    int i = 1;
+    string str = "┌­­"; //┌─┐ ┌─┐│└┘ ┌─┐│└┘┬┴ ┌─┐│└┘┬┴─
+    str = "┌";
+    while (i < len-1)
+    {
+        str += "──┬";
+        i++;
+    }
+    str += "──┐";
+    Console.Write($"{str}\n");
+}
 void View(int[,] arr)
 {
     for (int i = 0; i < arr.GetLength(1); i++)
     {
         for (int j = 0; j < arr.GetLength(0); j++)
         {
-            Console.Write($"|{arr[i, j],cellWidth}");
+            Console.Write($"│{arr[i, j],cellWidth}");
         }
-        Console.Write("|\n");
+        Console.Write("│\n");
     }
 }
 
-int size = 5;
+int size = 7;
 int step = 1;
 int[] indx = new int[] { 0, 0 };
 int[,] arrSpiral = new int[size, size];
 int k = 1;
 int strt = 0;
+void WayForward(int ind)
+{
+    arrSpiral[indx[0], indx[1]] = k;
+    indx[ind] += step;
+    k++;
+}
+
+void WayBack(int ind)
+{
+    arrSpiral[indx[0], indx[1]] = k;
+    indx[ind] -= step;
+    k++;
+
+}
 
 while (k < arrSpiral.Length)
 {
     while (indx[1] < size - 1)
     {
-        arrSpiral[indx[0], indx[1]] = k;
-        indx[1] += step;
-        k++;
+        WayForward(1);
     }
     while (indx[0] < size - 1)
     {
-        arrSpiral[indx[0], indx[1]] = k;
-        indx[0] += step;
-        k++;
+        WayForward(0);
     }
-    
     while (indx[1] > strt)
     {
-        arrSpiral[indx[0], indx[1]] = k;
-        indx[1] -= step;
-        k++;
+        WayBack(1);
     }
-
     while (indx[0] > strt)
     {
-        arrSpiral[indx[0], indx[1]] = k;
-        indx[0] -= step;
-        k++;
+        WayBack(0);
     }
     strt += 1;
     indx[0] += 1;
@@ -66,7 +83,9 @@ if (size % 2 != 0)
     arrSpiral[size / 2, size / 2] = arrSpiral.Length;
 }
 Console.Clear();
-Console.WriteLine("Заполнение массива по спирали\n");
+Console.WriteLine("Заполнение массива по спирали");
+DrawLineTop(size+1);
 View(arrSpiral);
-Console.WriteLine($"\nнаибольшее значение ячейки = {k=arrSpiral.Length},\nразмер массива {size} X {size}");
+Console.WriteLine($"\nнаибольшее значение ячейки = {k = arrSpiral.Length},\nразмер массива {size} X {size}");
+Console.Write("Для завершения нажать любую клавишу\n");
 Console.ReadKey();
