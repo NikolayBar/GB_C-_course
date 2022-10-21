@@ -6,7 +6,7 @@
 11 16 15  6
 10  9  8  7 */
 const int cellWidth = 2;
-void DrawLineTop(int len)
+void DrawLineTop(int len) //допилить чтобы выводил и нижнюю 
 {
     int i = 1;
     string str = "┌­­"; //┌─┐ ┌─┐│└┘ ┌─┐│└┘┬┴ ┌─┐│└┘┬┴─
@@ -31,7 +31,7 @@ void View(int[,] arr)
     }
 }
 
-int size = 7;
+int size = 7;// доделать ввод с клавы
 int step = 1;
 int[] indx = new int[] { 0, 0 };
 int[,] arrSpiral = new int[size, size];
