@@ -6,18 +6,21 @@
 11 16 15  6
 10  9  8  7 */
 const int cellWidth = 2;
-void DrawLineTop(int len) //допилить чтобы выводил и нижнюю 
+void DrawLineTab(int sizeData, int sizeCell, int pozType)
+// sizeData - число данных, sizeCell - размер ячейки
+// pozType - варианты 0 - верх, 1 - низ
 {
-    int i = 1;
-    string str = "┌­­"; //┌─┐ ┌─┐│└┘ ┌─┐│└┘┬┴ ┌─┐│└┘┬┴─
-    str = "┌";
-    while (i < len-1)
+    string result = "";
+    string sDiv = "┌┬┐";
+    if (pozType == 1) sDiv = "└┴┘";
+    string cellSynb = new string('─', sizeCell);
+    for (int i = 0; i < sizeData; i++)
     {
-        str += "──┬";
-        i++;
+        result += cellSynb;
+        if (i != sizeData-1) result += sDiv.Substring(1, 1);
     }
-    str += "──┐";
-    Console.Write($"{str}\n");
+
+    Console.WriteLine($"{sDiv.Substring(0, 1)}{result}{sDiv.Substring(2, 1)}");
 }
 void View(int[,] arr)
 {
@@ -28,10 +31,11 @@ void View(int[,] arr)
             Console.Write($"│{arr[i, j],cellWidth}");
         }
         Console.Write("│\n");
+        
     }
 }
 
-int size = 7;// доделать ввод с клавы
+int size = 5;// доделать ввод с клавы
 int step = 1;
 int[] indx = new int[] { 0, 0 };
 int[,] arrSpiral = new int[size, size];
@@ -84,8 +88,9 @@ if (size % 2 != 0)
 }
 Console.Clear();
 Console.WriteLine("Заполнение массива по спирали");
-DrawLineTop(size+1);
+DrawLineTab(size,cellWidth,0);
 View(arrSpiral);
+DrawLineTab(size,cellWidth,1);
 Console.WriteLine($"\nнаибольшее значение ячейки = {k = arrSpiral.Length},\nразмер массива {size} X {size}");
 Console.Write("Для завершения нажать любую клавишу\n");
 Console.ReadKey();
