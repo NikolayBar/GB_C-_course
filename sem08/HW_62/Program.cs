@@ -5,14 +5,16 @@
 12 13 14  5
 11 16 15  6
 10  9  8  7 */
-const int cellWidth = 2;
+const int cellWidth = 3;
+
 void DrawLineTab(int sizeData, int sizeCell, int pozType)
 // sizeData - число данных, sizeCell - размер ячейки
-// pozType - варианты 0 - верх, 1 - низ
+// pozType - варианты 0 - верх, 1 - низ, 2- середина
 {
     string result = "";
     string sDiv = "┌┬┐";
     if (pozType == 1) sDiv = "└┴┘";
+    if (pozType == 2) sDiv = "├┼┤";
     string cellSynb = new string('─', sizeCell);
     for (int i = 0; i < sizeData; i++)
     {
@@ -24,18 +26,23 @@ void DrawLineTab(int sizeData, int sizeCell, int pozType)
 }
 void View(int[,] arr)
 {
-    for (int i = 0; i < arr.GetLength(1); i++)
+    int iMax=arr.GetLength(0);
+    int jMax= arr.GetLength(1);
+    for (int i = 0; i < iMax; i++)
     {
-        for (int j = 0; j < arr.GetLength(0); j++)
+        for (int j = 0; j < jMax; j++)
         {
             Console.Write($"│{arr[i, j],cellWidth}");
         }
         Console.Write("│\n");
-        
+        if (i<iMax-1) DrawLineTab(iMax,cellWidth,2);
     }
 }
 
-int size = 5;// доделать ввод с клавы
+Console.Clear();
+Console.Write("Введите размер массива -> :");
+int size = Convert.ToInt32(Console.ReadLine());
+//добавить контроль ввода только целое число
 int step = 1;
 int[] indx = new int[] { 0, 0 };
 int[,] arrSpiral = new int[size, size];
@@ -92,5 +99,5 @@ DrawLineTab(size,cellWidth,0);
 View(arrSpiral);
 DrawLineTab(size,cellWidth,1);
 Console.WriteLine($"\nнаибольшее значение ячейки = {k = arrSpiral.Length},\nразмер массива {size} X {size}");
-Console.Write("Для завершения нажать любую клавишу\n");
+Console.Write("\nДля завершения нажать любую клавишу\n");
 Console.ReadKey();
